@@ -1,11 +1,11 @@
 <?php
 
-namespace Dotech\PaymentLinepay\Services;
+namespace Dotech\PaymentLinepay\Drivers;
 
 use Dotech\Order\Models\Order;
-use Dotech\Payment\Services\Contracts\PaymentService;
+use Dotech\Payment\Drivers\Driver;
 
-class Linepay implements PaymentService
+class Linepay extends Driver
 {
     public function getPaymentUrl(Order $order): string
     {

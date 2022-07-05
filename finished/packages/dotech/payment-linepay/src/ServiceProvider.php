@@ -2,7 +2,7 @@
 
 namespace Dotech\PaymentLinepay;
 
-use Dotech\PaymentLinepay\Services\Linepay;
+use Dotech\PaymentLinepay\Drivers\Linepay;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider

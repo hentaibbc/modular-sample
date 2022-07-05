@@ -2,7 +2,7 @@
 
 namespace Dotech\PaymentNewepay;
 
-use Dotech\PaymentNewepay\Services\Newepay;
+use Dotech\PaymentNewepay\Drivers\Newepay;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider

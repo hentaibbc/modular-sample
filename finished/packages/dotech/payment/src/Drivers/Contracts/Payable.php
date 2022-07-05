@@ -1,10 +1,10 @@
 <?php
 
-namespace Dotech\Payment\Services\Contracts;
+namespace Dotech\Payment\Drivers\Contracts;
 
 use Dotech\Order\Models\Order;
 
-interface PaymentService
+interface Payable
 {
     public function getPaymentUrl(Order $order): string;
 }

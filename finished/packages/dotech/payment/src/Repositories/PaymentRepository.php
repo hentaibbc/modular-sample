@@ -3,7 +3,7 @@
 namespace Dotech\Payment\Repositories;
 
 use Dotech\Order\Models\Order;
-use Dotech\Payment\Services\Contracts\PaymentService;
+use Dotech\Payment\Services\PaymentService;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
@@ -18,11 +18,7 @@ class PaymentRepository
             'payment.id'        => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    try {
-                        $this->getPaymentService($value);
-                    } catch (Throwable $e) {
-                        app(ExceptionHandler::class)->report($e);
-
+                    if (!PaymentService::has($value)) {
                         $fail($attribute.' not exists');
                     }
                 },
@@ -34,14 +30,6 @@ class PaymentRepository
 
     public function getPaymentUrl(Order $order): string
     {
-        return $this
-            ->getPaymentService($order->getDetail('payment.id'))
-            ->getPaymentUrl($order)
-            ;
-    }
-
-    protected function getPaymentService($name): PaymentService
-    {
-        return app('payment.'.$name);
+        return PaymentService::factory($order->getDetail('payment.id'))->getPaymentUrl($order);
     }
 }
